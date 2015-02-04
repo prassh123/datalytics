@@ -1,3 +1,5 @@
 # Datalytics
 
-All about data
+Webapp to visualize the flow of information 
+
+
