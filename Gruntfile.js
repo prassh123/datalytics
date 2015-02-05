@@ -469,7 +469,7 @@ module.exports = function ( grunt ) {
         files: [ 
           '<%= app_files.js %>'
         ],
-        tasks: [ 'jshint:src', 'karma:unit:run', 'copy:build_appjs' ]
+        tasks: [ 'jshint:test', 'karma:unit:run', 'copy:build_appjs' ]
       },
 
       /**
@@ -612,7 +612,6 @@ module.exports = function ( grunt ) {
   grunt.registerMultiTask( 'index', 'Process index.html template', function () {
     var dirRE = new RegExp( '^('+grunt.config('build_dir')+'|'+grunt.config('compile_dir')+')\/', 'g' );
     var jsFiles = filterForJS( this.filesSrc ).map( function ( file ) {
-        console.log(file);
       return file.replace( dirRE, '' );
     });
     var cssFiles = filterForCSS( this.filesSrc ).map( function ( file ) {

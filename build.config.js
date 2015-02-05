@@ -38,7 +38,7 @@ module.exports = {
    */
   test_files: {
     js: [
-      'client/vendor/angular-mocks/angular-mocks.js'
+      'src/client/vendor/angular-mocks/angular-mocks.js'
     ]
   },
 
