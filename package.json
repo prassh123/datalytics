@@ -12,7 +12,7 @@
     "url": ""
   },
   "scripts": {
-    "start": "node server/app.js"
+    "start": "node src/server/app.js"
   },
   "bugs": "https://github.com/prassh123/datalytics/issues",
   "repository": {

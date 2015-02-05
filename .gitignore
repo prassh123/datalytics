@@ -3,3 +3,4 @@ build
 datalytics.iml
 node_modules
 vendor
+npm-debug.log

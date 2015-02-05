@@ -26,8 +26,14 @@ var server = restify.createServer({
 
 
 server.use(restify.queryParser());
+server.use(restify.bodyParser());
 server.use(restify.CORS());
 routes.apply(server);
+
+// serve static JavaScript and CSS.
+server.get(/\/|js|css|images\/?.*/, restify.serveStatic({
+    directory: __dirname + '/../../build'
+}));
 
 server.listen(config.server.port, function() {
     log.info('%s listening at %s', server.name, server.url);
