@@ -1,17 +1,25 @@
 {
   "author": "Netflix",
   "name": "Datalytics",
+  "private": true,
   "version": "0.0.1",
   "homepage": "https://github.com/prassh123/datalytics",
+  "main": "server/app.js",
+  "directories": {
+  },
   "licenses": {
     "type": "MIT",
     "url": ""
+  },
+  "scripts": {
+    "start": "node server/app.js"
   },
   "bugs": "https://github.com/prassh123/datalytics/issues",
   "repository": {
     "type": "git",
     "url": "https://github.com/prassh123/datalytics.git"
   },
+  "contributors": "Prashanth Raghavan<praghavan@netflix.com>, Sathish Sridharan<ssridharan@netflix.com>",
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.1",
@@ -30,8 +38,8 @@
     "grunt-karma": "^0.8.2",
     "grunt-ng-annotate": "^0.8.0",
     "karma": "^0.12.9",
+    "karma-chrome-launcher": "^0.1.7",
     "karma-coffee-preprocessor": "^0.2.1",
-    "karma-firefox-launcher": "^0.1.3",
     "karma-jasmine": "^0.1.5"
   }
 }
