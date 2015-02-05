@@ -103,7 +103,7 @@ module.exports = function ( grunt ) {
           { 
             src: [ '**' ],
             dest: '<%= build_dir %>/assets/',
-            cwd: 'src/assets',
+            cwd: 'src/client/assets',
             expand: true
           }
        ]   
@@ -124,7 +124,7 @@ module.exports = function ( grunt ) {
           {
             src: [ '<%= app_files.js %>' ],
             dest: '<%= build_dir %>/',
-            cwd: '.',
+            cwd: 'src/client',
             expand: true
           }
         ]
@@ -134,7 +134,7 @@ module.exports = function ( grunt ) {
           {
             src: [ '<%= vendor_files.js %>' ],
             dest: '<%= build_dir %>/',
-            cwd: '.',
+            cwd: 'src/client',
             expand: true
           }
         ]
@@ -144,7 +144,7 @@ module.exports = function ( grunt ) {
           {
             src: [ '<%= vendor_files.css %>' ],
             dest: '<%= build_dir %>/',
-            cwd: '.',
+            cwd: 'src/client',
             expand: true
           }
         ]
@@ -284,9 +284,13 @@ module.exports = function ( grunt ) {
      * nonetheless inside `src/`.
      */
     jshint: {
-      src: [ 
-        '<%= app_files.js %>'
-      ],
+      files: {
+        src: [
+          '<%= app_files.js %>'
+        ],
+        expand: true,
+        cwd: 'src/client'
+      },
       test: [
         '<%= app_files.jsunit %>'
       ],
@@ -331,11 +335,11 @@ module.exports = function ( grunt ) {
      */
     html2js: {
       /**
-       * These are the templates from `src/app`.
+       * These are the templates from `src/client/app`.
        */
       app: {
         options: {
-          base: 'src/app'
+          base: 'src/client/app'
         },
         src: [ '<%= app_files.atpl %>' ],
         dest: '<%= build_dir %>/templates-app.js'
@@ -346,7 +350,7 @@ module.exports = function ( grunt ) {
        */
       common: {
         options: {
-          base: 'src/common'
+          base: 'src/client/common'
         },
         src: [ '<%= app_files.ctpl %>' ],
         dest: '<%= build_dir %>/templates-common.js'
@@ -384,13 +388,13 @@ module.exports = function ( grunt ) {
       build: {
         dir: '<%= build_dir %>',
         src: [
-          '<%= vendor_files.js %>',
-          '<%= build_dir %>/src/**/*.js',
-          '<%= html2js.common.dest %>',
-          '<%= html2js.app.dest %>',
-          '<%= vendor_files.css %>',
-          '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css'
-        ]
+            '<%= vendor_files.build_vendor_js %>',
+            '<%= build_dir %>/**/*.js',
+            '<%= html2js.common.dest %>',
+            '<%= html2js.app.dest %>',
+            '<%= vendor_files.css %>',
+            '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css'
+          ]
       },
 
       /**
@@ -608,13 +612,14 @@ module.exports = function ( grunt ) {
   grunt.registerMultiTask( 'index', 'Process index.html template', function () {
     var dirRE = new RegExp( '^('+grunt.config('build_dir')+'|'+grunt.config('compile_dir')+')\/', 'g' );
     var jsFiles = filterForJS( this.filesSrc ).map( function ( file ) {
+        console.log(file);
       return file.replace( dirRE, '' );
     });
     var cssFiles = filterForCSS( this.filesSrc ).map( function ( file ) {
       return file.replace( dirRE, '' );
     });
 
-    grunt.file.copy('src/index.html', this.data.dir + '/index.html', { 
+    grunt.file.copy('src/client/index.html', this.data.dir + '/index.html', {
       process: function ( contents, path ) {
         return grunt.template.process( contents, {
           data: {

@@ -20,17 +20,17 @@ module.exports = {
    * app's unit tests.
    */
   app_files: {
-    js: [ 'src/**/*.js', '!src/**/*.spec.js', '!src/assets/**/*.js' ],
+    js: [ '**/*.js', '!**/*.spec.js', '!**/assets/**/*.js', '!**/vendor/**/*.js' ],
     jsunit: [ 'src/**/*.spec.js' ],
     
     coffee: [ 'src/**/*.coffee', '!src/**/*.spec.coffee' ],
     coffeeunit: [ 'src/**/*.spec.coffee' ],
 
-    atpl: [ 'src/app/**/*.tpl.html' ],
-    ctpl: [ 'src/common/**/*.tpl.html' ],
+    atpl: [ 'src/client/app/**/*.tpl.html' ],
+    ctpl: [ 'src/client/common/**/*.tpl.html' ],
 
-    html: [ 'src/index.html' ],
-    less: 'src/less/main.less'
+    html: [ 'src/client/index.html' ],
+    less: 'src/client/less/main.less'
   },
 
   /**
@@ -38,7 +38,7 @@ module.exports = {
    */
   test_files: {
     js: [
-      'vendor/angular-mocks/angular-mocks.js'
+      'client/vendor/angular-mocks/angular-mocks.js'
     ]
   },
 
@@ -65,12 +65,18 @@ module.exports = {
       'vendor/angular/angular.js',
       'vendor/angular-bootstrap/ui-bootstrap-tpls.min.js',
       'vendor/placeholders/angular-placeholders-0.0.1-SNAPSHOT.min.js',
-      'vendor/angular-ui-router/release/angular-ui-router.js',
-      'vendor/angular-ui-utils/modules/route/route.js'
+      'vendor/angular-ui-router/release/angular-ui-router.js'
+      //'vendor/angular-ui-utils/modules/route/route.js'
+    ],
+    build_vendor_js: [
+      'build/vendor/angular/angular.js',
+      'build/vendor/angular-bootstrap/ui-bootstrap-tpls.min.js',
+      'build/vendor/placeholders/angular-placeholders-0.0.1-SNAPSHOT.min.js',
+      'build/vendor/angular-ui-router/release/angular-ui-router.js'
     ],
     css: [
     ],
     assets: [
     ]
-  },
+  }
 };
